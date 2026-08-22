@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# database (SQLite) - regenerate with `npm run seed`
+server/dayflow.db
+server/dayflow.db-shm
+server/dayflow.db-wal
+*.sqlite
+
+# build output
+client/dist/
+
+# env & secrets
+.env
+server/.env
+
+# logs & os junk
+*.log
+.DS_Store
