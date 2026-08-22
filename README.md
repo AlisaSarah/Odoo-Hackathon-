@@ -6,47 +6,50 @@ Dayflow is a Human Resource Management System we built for the **Odoo Hackathon*
 
 Everything runs locally on a real database (SQLite), talks to a proper REST API, and has a clean responsive UI.
 
----
+\---
 
 ## ✨ Features
 
 **For Employees**
-- 🔐 Sign up / sign in with role selection (JWT auth, hashed passwords)
-- 🏠 Personal dashboard — today's status, leave balance, recent activity
-- 🕑 One-tap **check-in / check-out**, daily / weekly / monthly attendance history (+ CSV export)
-- 🌴 Apply for leave (paid / sick / casual / unpaid) with live balance tracking
-- 💰 Read-only payroll — salary breakdown + downloadable/printable payslips
-- 👤 Edit your own profile (phone, address, etc.)
-- 🔔 Notifications for leave decisions, payslips and more
+
+* 🔐 Sign up / sign in with role selection (JWT auth, hashed passwords)
+* 🏠 Personal dashboard — today's status, leave balance, recent activity
+* 🕑 One-tap **check-in / check-out**, daily / weekly / monthly attendance history (+ CSV export)
+* 🌴 Apply for leave (paid / sick / casual / unpaid) with live balance tracking
+* 💰 Read-only payroll — salary breakdown + downloadable/printable payslips
+* 👤 Edit your own profile (phone, address, etc.)
+* 🔔 Notifications for leave decisions, payslips and more
 
 **For HR / Admin**
-- 📊 Analytics dashboard — headcount, attendance rate, 7-day trend chart, department split
-- 👥 Employee directory with search + department filter, add / edit employees
-- ✅ Leave approvals — approve/reject with comments (auto-updates balances + attendance)
-- 🕑 Team attendance roster for any date, with manual override
-- 💰 Full payroll control — edit salary structures, generate monthly payslips
-- 🧾 Export attendance to CSV
+
+* 📊 Analytics dashboard — headcount, attendance rate, 7-day trend chart, department split
+* 👥 Employee directory with search + department filter, add / edit employees
+* ✅ Leave approvals — approve/reject with comments (auto-updates balances + attendance)
+* 🕑 Team attendance roster for any date, with manual override
+* 💰 Full payroll control — edit salary structures, generate monthly payslips
+* 🧾 Export attendance to CSV
 
 **Nice touches**
-- 🌙 Light / dark mode
-- 📱 Fully responsive (works on mobile)
-- ⚡ Robust validation on **both** client and server
-- 🎨 Consistent design system
 
----
+* 🌙 Light / dark mode
+* 📱 Fully responsive (works on mobile)
+* ⚡ Robust validation on **both** client and server
+* 🎨 Consistent design system
+
+\---
 
 ## 🛠 Tech Stack
 
-| Layer     | Tech |
-|-----------|------|
-| Frontend  | React 18, Vite, React Router, Recharts |
-| Backend   | Node.js, Express |
-| Database  | SQLite via Node's built-in `node:sqlite` — local, zero-config, no compiler needed |
-| Auth      | JWT + bcrypt |
+|Layer|Tech|
+|-|-|
+|Frontend|React 18, Vite, React Router, Recharts|
+|Backend|Node.js, Express|
+|Database|SQLite via Node's built-in `node:sqlite` — local, zero-config, no compiler needed|
+|Auth|JWT + bcrypt|
 
 We chose **SQLite** so the whole thing works offline with no external services — clone, install, run. Dynamic data lives in the DB, not static JSON.
 
----
+\---
 
 ## 📁 Project Structure
 
@@ -68,7 +71,7 @@ dayflow-hrms/
 └── package.json           # root scripts (run both together)
 ```
 
----
+\---
 
 ## 🚀 Getting Started
 
@@ -91,10 +94,10 @@ Then open **http://localhost:5173**
 
 ### 🔑 Demo Logins
 
-| Role        | Email                | Password    |
-|-------------|----------------------|-------------|
-| HR / Admin  | `admin@dayflow.com`  | `Admin@123` |
-| Employee    | `aarav@dayflow.com`  | `Pass@123`  |
+|Role|Email|Password|
+|-|-|-|
+|HR / Admin|`admin@dayflow.com`|`Admin@123`|
+|Employee|`aarav@dayflow.com`|`Pass@123`|
 
 (All seeded employees use `Pass@123`. The login screen also has one-click demo buttons.)
 
@@ -105,35 +108,40 @@ npm run build     # builds the React app
 npm start         # Express serves API + the built app on http://localhost:4000
 ```
 
----
+\---
 
 ## 🔌 API Overview
 
 All routes are under `/api`. Protected routes need `Authorization: Bearer <token>`.
 
-| Method | Endpoint                      | Description |
-|--------|-------------------------------|-------------|
-| POST   | `/auth/signup` `/auth/login`  | Register / log in |
-| GET    | `/dashboard/employee` `/dashboard/admin` | Dashboard data |
-| GET/PUT| `/employees` `/employees/:id` | Directory, profile view/edit |
-| POST   | `/attendance/check-in` `/check-out` | Punch in/out |
-| GET    | `/attendance/me` `/attendance` | My / team attendance |
-| GET/POST | `/leave/me` `/leave`        | Balances, apply, list |
-| PUT    | `/leave/:id/review`           | Approve / reject |
-| GET/PUT| `/payroll/me` `/payroll/:id`  | Payslips, salary control |
-| GET    | `/notifications`              | Notifications |
+|Method|Endpoint|Description|
+|-|-|-|
+|POST|`/auth/signup` `/auth/login`|Register / log in|
+|GET|`/dashboard/employee` `/dashboard/admin`|Dashboard data|
+|GET/PUT|`/employees` `/employees/:id`|Directory, profile view/edit|
+|POST|`/attendance/check-in` `/check-out`|Punch in/out|
+|GET|`/attendance/me` `/attendance`|My / team attendance|
+|GET/POST|`/leave/me` `/leave`|Balances, apply, list|
+|PUT|`/leave/:id/review`|Approve / reject|
+|GET/PUT|`/payroll/me` `/payroll/:id`|Payslips, salary control|
+|GET|`/notifications`|Notifications|
 
----
+\---
 
-## 👥 Team
+## 👥 Team Phoenix
 
-- _Add your names + roles here_
-- Remember: everyone should commit! (Odoo checks that the repo isn't managed by one person.)
+* *Alisa Sarah- Team leader*
+* *Anyaa Miryam Camoens- Backend management*
+* *Chaithanya K R- Frontend management*
+* *Adhipa G-System design*
+
+
 
 ## 🔮 Future Enhancements
 
-- Real email verification + password reset
-- Document upload (currently listed, not stored)
-- Shift scheduling & overtime
-- Performance reviews / goals
-- Mobile app version
+* Real email verification + password reset
+* Document upload (currently listed, not stored)
+* Shift scheduling \& overtime
+* Performance reviews / goals
+* Mobile app version
+
