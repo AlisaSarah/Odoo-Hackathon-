@@ -81,7 +81,7 @@ function Payslip({ slip, onClose }) {
     <Modal title={`Payslip — ${slip.month_name} ${slip.year}`} onClose={onClose}
       footer={<button className="btn btn-ghost" onClick={() => window.print()}>🖨 Print / Save PDF</button>}>
       <div className="row between mb">
-        <div><div className="brand-name">Dayflow</div><div className="muted" style={{ fontSize: 12 }}>Salary Slip</div></div>
+        <div><div className="brand-name">GENESIS</div><div className="muted" style={{ fontSize: 12 }}>Salary Slip</div></div>
         <Badge tone="green">{slip.status}</Badge>
       </div>
       <Row label="Basic" value={money(slip.basic)} />

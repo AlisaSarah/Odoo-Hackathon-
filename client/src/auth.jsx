@@ -66,10 +66,10 @@ export function ToastProvider({ children }) {
 
 /* ---------------- Theme ---------------- */
 export function useTheme() {
-  const [theme, setTheme] = useState(() => localStorage.getItem('dayflow_theme') || 'light');
+  const [theme, setTheme] = useState(() => localStorage.getItem('genesis_theme') || 'light');
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('dayflow_theme', theme);
+    localStorage.setItem('genesis_theme', theme);
   }, [theme]);
   return [theme, () => setTheme((t) => (t === 'light' ? 'dark' : 'light'))];
 }

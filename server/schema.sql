@@ -1,4 +1,4 @@
--- Dayflow HRMS database schema (SQLite)
+-- Genesis HRMS database schema (SQLite)
 -- Everyone in the system is an "employee"; the role column decides what they can do.
 
 PRAGMA foreign_keys = ON;

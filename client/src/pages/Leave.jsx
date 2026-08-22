@@ -109,10 +109,17 @@ function LeaveApprovals() {
   const toast = useToast();
   const [filter, setFilter] = useState('pending');
   const [requests, setRequests] = useState(null);
+  const [loadError, setLoadError] = useState('');
   const [review, setReview] = useState(null); // request being reviewed
   const [comment, setComment] = useState('');
 
-  const load = () => api.get(`/leave?status=${filter}`).then((d) => setRequests(d.requests)).catch(() => {});
+  const load = () => {
+    setRequests(null);
+    setLoadError('');
+    api.get(`/leave?status=${filter}`)
+      .then((d) => setRequests(d.requests))
+      .catch((e) => { setLoadError(e.message); setRequests([]); });
+  };
   useEffect(() => { load(); }, [filter]);
 
   const decide = async (decision) => {
@@ -136,7 +143,14 @@ function LeaveApprovals() {
               </button>)}
           </div>
         </div>
-        {!requests ? <Spinner /> : requests.length === 0 ? (
+        {loadError ? (
+          <div className="empty">
+            <div className="empty-ico">⚠️</div>
+            <div style={{ fontWeight: 700, color: 'var(--text)' }}>Could not load leave requests</div>
+            <div style={{ marginTop: 4 }}>{loadError}</div>
+            <button className="btn btn-ghost btn-sm mt" onClick={load}>Try again</button>
+          </div>
+        ) : !requests ? <Spinner /> : requests.length === 0 ? (
           <EmptyState icon="✅" title="Nothing here" subtitle="No requests match this filter." />
         ) : (
           <div className="table-wrap">

@@ -48,10 +48,10 @@ export default function Layout() {
 
       <aside className={`sidebar ${open ? 'open' : ''}`}>
         <div className="brand">
-          <div className="brand-mark">D</div>
+          <span className="brand-symbol" role="img" aria-label="Genesis logo" />
           <div>
-            <div className="brand-name">Dayflow</div>
-            <div className="brand-tag">HR, perfectly aligned</div>
+            <div className="brand-name">GENESIS</div>
+            <div className="brand-tag">HR management, simplified</div>
           </div>
         </div>
         <nav className="nav">

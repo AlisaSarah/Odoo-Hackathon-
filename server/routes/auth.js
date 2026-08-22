@@ -57,7 +57,7 @@ router.post('/signup', (req, res) => {
   DEFAULT_BALANCES.forEach((b) => balStmt.run(id, b.leave_type, b.total));
 
   db.prepare(
-    "INSERT INTO notifications (employee_id, title, message, type) VALUES (?, 'Welcome to Dayflow 👋', 'Your account is ready. Complete your profile to get started.', 'success')"
+    "INSERT INTO notifications (employee_id, title, message, type) VALUES (?, 'Welcome to Genesis 👋', 'Your account is ready. Complete your profile to get started.', 'success')"
   ).run(id);
 
   const user = db.prepare('SELECT * FROM employees WHERE id = ?').get(id);

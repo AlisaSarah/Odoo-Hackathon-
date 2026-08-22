@@ -2,9 +2,9 @@
 node_modules/
 
 # database (SQLite) - regenerate with `npm run seed`
-server/dayflow.db
-server/dayflow.db-shm
-server/dayflow.db-wal
+server/genesis.db
+server/genesis.db-shm
+server/genesis.db-wal
 *.sqlite
 
 # build output

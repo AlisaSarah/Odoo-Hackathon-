@@ -1,7 +1,7 @@
 {
-  "name": "dayflow-client",
+  "name": "genesis-client",
   "version": "1.0.0",
-  "description": "Dayflow HRMS frontend - React + Vite",
+  "description": "Genesis HRMS frontend - React + Vite",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -53,7 +53,7 @@ router.get('/', requireAdmin, (req, res) => {
     sql += ' WHERE lr.status = ?';
     params.push(status);
   }
-  sql += ' ORDER BY (lr.status = "pending") DESC, lr.created_at DESC';
+  sql += " ORDER BY (lr.status = 'pending') DESC, lr.created_at DESC";
   res.json({ requests: db.prepare(sql).all(...params) });
 });
 

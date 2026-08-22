@@ -32,11 +32,8 @@ export default function Login() {
   return (
     <div className="auth">
       <div className="auth-hero">
-        <div className="brand" style={{ padding: 0, marginBottom: 30 }}>
-          <div className="brand-mark" style={{ background: 'rgba(255,255,255,0.2)' }}>D</div>
-          <div className="brand-name" style={{ color: '#fff' }}>Dayflow</div>
-        </div>
-        <h2>Every workday,<br />perfectly aligned.</h2>
+        <img className="auth-logo" src="/genesis-logo.png" alt="Genesis" />
+        <h2>Where better work<br />begins.</h2>
         <p>One place for attendance, leave, payroll and your whole team — built for people, not paperwork.</p>
         <ul>
           <li>✓ Smart attendance with one-tap check-in</li>
@@ -55,7 +52,7 @@ export default function Login() {
           <Field label="Email">
             <input className="input" type="email" autoFocus value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              placeholder="you@dayflow.com" />
+              placeholder="you@genesis.com" />
           </Field>
           <Field label="Password">
             <input className="input" type="password" value={form.password}
@@ -75,11 +72,11 @@ export default function Login() {
             <div className="stat-label mb">Demo logins</div>
             <div className="row between">
               <span className="muted">Admin / HR</span>
-              <button type="button" className="btn btn-ghost btn-sm" onClick={() => demo('admin@dayflow.com', 'Admin@123')}>Use</button>
+              <button type="button" className="btn btn-ghost btn-sm" onClick={() => demo('admin@genesis.com', 'Admin@123')}>Use</button>
             </div>
             <div className="row between mt">
               <span className="muted">Employee</span>
-              <button type="button" className="btn btn-ghost btn-sm" onClick={() => demo('aarav@dayflow.com', 'Pass@123')}>Use</button>
+              <button type="button" className="btn btn-ghost btn-sm" onClick={() => demo('aarav@genesis.com', 'Pass@123')}>Use</button>
             </div>
           </div>
         </form>

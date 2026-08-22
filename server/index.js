@@ -30,7 +30,7 @@ app.use((req, _res, next) => {
 });
 
 // --- API routes ---
-app.get('/api/health', (_req, res) => res.json({ status: 'ok', service: 'Dayflow HRMS' }));
+app.get('/api/health', (_req, res) => res.json({ status: 'ok', service: 'Genesis HRMS' }));
 app.use('/api/auth', authRoutes);
 app.use('/api/employees', employeeRoutes);
 app.use('/api/attendance', attendanceRoutes);
@@ -55,5 +55,5 @@ app.use((err, _req, res, _next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`\n  Dayflow API running on http://localhost:${PORT}\n`);
+  console.log(`\n  Genesis API running on http://localhost:${PORT}\n`);
 });

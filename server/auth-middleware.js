@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 // In a real deployment this would come from a secret manager. For a local
 // hackathon build we read it from .env and fall back to a dev default.
-const JWT_SECRET = process.env.JWT_SECRET || 'dayflow-dev-secret-change-me';
+const JWT_SECRET = process.env.JWT_SECRET || 'genesis-dev-secret-change-me';
 const TOKEN_TTL = '7d';
 
 export function signToken(user) {

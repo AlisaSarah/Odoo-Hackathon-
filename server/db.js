@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DB_PATH = path.join(__dirname, 'dayflow.db');
+const DB_PATH = path.join(__dirname, 'genesis.db');
 
 // One shared connection for the whole app. We use Node's built-in SQLite
 // (node:sqlite) so there's nothing to compile or install - it ships with Node.

@@ -15,18 +15,18 @@ const pw = (p) => bcrypt.hashSync(p, 10);
 
 // department, designation, [basic, hra, allowances, deductions]
 const people = [
-  ['EMP001', 'Aarav Sharma', 'aarav@dayflow.com', 'employee', 'Engineering', 'Senior Software Engineer', [65000, 26000, 12000, 8500]],
-  ['EMP002', 'Diya Patel', 'diya@dayflow.com', 'employee', 'Engineering', 'Frontend Developer', [48000, 19000, 9000, 6200]],
-  ['EMP003', 'Rohan Mehta', 'rohan@dayflow.com', 'employee', 'Engineering', 'Backend Developer', [52000, 20000, 9500, 6800]],
-  ['EMP004', 'Ananya Iyer', 'ananya@dayflow.com', 'employee', 'Design', 'Product Designer', [46000, 18000, 8500, 5900]],
-  ['EMP005', 'Kabir Singh', 'kabir@dayflow.com', 'employee', 'Sales', 'Sales Executive', [38000, 15000, 11000, 4800]],
-  ['EMP006', 'Isha Reddy', 'isha@dayflow.com', 'employee', 'Sales', 'Account Manager', [44000, 17000, 10000, 5600]],
-  ['EMP007', 'Vivaan Nair', 'vivaan@dayflow.com', 'employee', 'Marketing', 'Marketing Specialist', [40000, 16000, 8000, 5100]],
-  ['EMP008', 'Sara Khan', 'sara@dayflow.com', 'employee', 'Marketing', 'Content Lead', [43000, 17000, 8500, 5400]],
-  ['EMP009', 'Arjun Desai', 'arjun@dayflow.com', 'employee', 'Finance', 'Financial Analyst', [50000, 20000, 9000, 6500]],
-  ['EMP010', 'Myra Joshi', 'myra@dayflow.com', 'employee', 'Support', 'Customer Success', [36000, 14000, 7000, 4500]],
-  ['EMP011', 'Aditya Rao', 'aditya@dayflow.com', 'employee', 'Engineering', 'DevOps Engineer', [58000, 23000, 10000, 7400]],
-  ['EMP012', 'Neha Gupta', 'neha@dayflow.com', 'employee', 'Support', 'Support Engineer', [37000, 14500, 7200, 4600]],
+  ['EMP001', 'Aarav Sharma', 'aarav@genesis.com', 'employee', 'Engineering', 'Senior Software Engineer', [65000, 26000, 12000, 8500]],
+  ['EMP002', 'Diya Patel', 'diya@genesis.com', 'employee', 'Engineering', 'Frontend Developer', [48000, 19000, 9000, 6200]],
+  ['EMP003', 'Rohan Mehta', 'rohan@genesis.com', 'employee', 'Engineering', 'Backend Developer', [52000, 20000, 9500, 6800]],
+  ['EMP004', 'Ananya Iyer', 'ananya@genesis.com', 'employee', 'Design', 'Product Designer', [46000, 18000, 8500, 5900]],
+  ['EMP005', 'Kabir Singh', 'kabir@genesis.com', 'employee', 'Sales', 'Sales Executive', [38000, 15000, 11000, 4800]],
+  ['EMP006', 'Isha Reddy', 'isha@genesis.com', 'employee', 'Sales', 'Account Manager', [44000, 17000, 10000, 5600]],
+  ['EMP007', 'Vivaan Nair', 'vivaan@genesis.com', 'employee', 'Marketing', 'Marketing Specialist', [40000, 16000, 8000, 5100]],
+  ['EMP008', 'Sara Khan', 'sara@genesis.com', 'employee', 'Marketing', 'Content Lead', [43000, 17000, 8500, 5400]],
+  ['EMP009', 'Arjun Desai', 'arjun@genesis.com', 'employee', 'Finance', 'Financial Analyst', [50000, 20000, 9000, 6500]],
+  ['EMP010', 'Myra Joshi', 'myra@genesis.com', 'employee', 'Support', 'Customer Success', [36000, 14000, 7000, 4500]],
+  ['EMP011', 'Aditya Rao', 'aditya@genesis.com', 'employee', 'Engineering', 'DevOps Engineer', [58000, 23000, 10000, 7400]],
+  ['EMP012', 'Neha Gupta', 'neha@genesis.com', 'employee', 'Support', 'Support Engineer', [37000, 14500, 7200, 4600]],
 ];
 
 const insertEmp = db.prepare(
@@ -38,7 +38,7 @@ const insertEmp = db.prepare(
 
 // Admin / HR account
 const adminId = insertEmp.run(
-  'HR001', 'Priya Menon', 'admin@dayflow.com', pw('Admin@123'), 'admin', 'Human Resources', 'HR Manager',
+  'HR001', 'Priya Menon', 'admin@genesis.com', pw('Admin@123'), 'admin', 'Human Resources', 'HR Manager',
   '2021-03-15', '+91 98765 43210', 'P', 90000, 30000, 15000, 9000, '["Offer Letter.pdf","ID Proof.pdf"]', 'Female'
 ).lastInsertRowid;
 
@@ -65,13 +65,15 @@ const balStmt = db.prepare('INSERT INTO leave_balances (employee_id, leave_type,
   balStmt.run(id, 'unpaid', 30, 0);
 });
 
-// Attendance for the last 21 days (skip weekends)
+// Attendance history for the previous 21 days (skip weekends).
+// Today is added separately below so the admin dashboard always has useful
+// numbers while Aarav remains free for a live employee check-in demo.
 console.log('Generating attendance history...');
 const attStmt = db.prepare(
   `INSERT OR IGNORE INTO attendance (employee_id, date, check_in, check_out, status, work_hours)
    VALUES (?, ?, ?, ?, ?, ?)`
 );
-for (let back = 21; back >= 0; back--) {
+for (let back = 21; back >= 1; back--) {
   const d = new Date();
   d.setDate(d.getDate() - back);
   const dow = d.getDay();
@@ -91,6 +93,14 @@ for (let back = 21; back >= 0; back--) {
   });
 }
 
+const currentDate = new Date().toISOString().slice(0, 10);
+allEmpIds.filter((id) => id !== ids.EMP001).forEach((id, i) => {
+  if (i < 8) { attStmt.run(id, currentDate, '09:10', '17:45', 'present', 8.6); return; }
+  if (i === 8) { attStmt.run(id, currentDate, '09:40', '13:20', 'half-day', 3.7); return; }
+  if (i === 9) { attStmt.run(id, currentDate, null, null, 'absent', 0); return; }
+  attStmt.run(id, currentDate, null, null, 'leave', 0);
+});
+
 // A few leave requests in various states
 console.log('Adding leave requests...');
 const leaveStmt = db.prepare(
@@ -98,7 +108,7 @@ const leaveStmt = db.prepare(
    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 );
 const future = (n) => { const d = new Date(); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
-leaveStmt.run(ids.EMP002, 'sick', future(2), future(3), 2, 'Fever and rest advised by doctor', 'pending', null, null, null);
+leaveStmt.run(ids.EMP001, 'sick', future(2), future(3), 2, 'Fever and rest advised by doctor', 'pending', null, null, null);
 leaveStmt.run(ids.EMP005, 'paid', future(10), future(14), 5, 'Family function out of town', 'pending', null, null, null);
 leaveStmt.run(ids.EMP007, 'casual', future(1), future(1), 1, 'Personal errand', 'pending', null, null, null);
 leaveStmt.run(ids.EMP001, 'paid', '2026-07-20', '2026-07-22', 3, 'Short vacation', 'approved', 'Approved, enjoy!', adminId, '2026-07-15 10:20:00');
@@ -130,6 +140,6 @@ act.run(ids.EMP001, 'Downloaded July payslip');
 console.log('\n✅ Seed complete!\n');
 console.log('  Login credentials');
 console.log('  ─────────────────');
-console.log('  Admin / HR :  admin@dayflow.com   /  Admin@123');
-console.log('  Employee   :  aarav@dayflow.com   /  Pass@123');
+console.log('  Admin / HR :  admin@genesis.com   /  Admin@123');
+console.log('  Employee   :  aarav@genesis.com   /  Pass@123');
 console.log('  (all seeded employees use the password  Pass@123)\n');

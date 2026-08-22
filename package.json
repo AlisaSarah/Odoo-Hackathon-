@@ -1,7 +1,7 @@
 {
-  "name": "dayflow-hrms",
+  "name": "genesis-hrms",
   "version": "1.0.0",
-  "description": "Dayflow - a Human Resource Management System. Every workday, perfectly aligned.",
+  "description": "Genesis - a simple, local-first Human Resource Management System.",
   "private": true,
   "scripts": {
     "install:all": "npm install && npm --prefix server install && npm --prefix client install",

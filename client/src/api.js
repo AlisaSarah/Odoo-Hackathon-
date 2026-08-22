@@ -1,7 +1,7 @@
 // Thin wrapper around fetch so every call automatically attaches the JWT
 // and errors come back in a predictable shape.
 
-const TOKEN_KEY = 'dayflow_token';
+const TOKEN_KEY = 'genesis_token';
 
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
 export const setToken = (t) => localStorage.setItem(TOKEN_KEY, t);

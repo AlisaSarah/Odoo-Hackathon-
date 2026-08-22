@@ -55,11 +55,8 @@ export default function Signup() {
   return (
     <div className="auth">
       <div className="auth-hero">
-        <div className="brand" style={{ padding: 0, marginBottom: 30 }}>
-          <div className="brand-mark" style={{ background: 'rgba(255,255,255,0.2)' }}>D</div>
-          <div className="brand-name" style={{ color: '#fff' }}>Dayflow</div>
-        </div>
-        <h2>Join your team<br />on Dayflow.</h2>
+        <img className="auth-logo" src="/genesis-logo.png" alt="Genesis" />
+        <h2>Start your journey<br />with Genesis.</h2>
         <p>Set up your account in under a minute and manage your entire work life from one dashboard.</p>
       </div>
 
@@ -78,7 +75,7 @@ export default function Signup() {
           </Field>
           <Field label="Email" error={errors.email}>
             <input className={`input ${errors.email ? 'error' : ''}`} type="email" value={form.email}
-              onChange={set('email')} placeholder="you@dayflow.com" />
+              onChange={set('email')} placeholder="you@genesis.com" />
           </Field>
           <div className="grid grid-2">
             <Field label="Password" error={errors.password}>
