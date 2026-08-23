@@ -1,4 +1,4 @@
-# Dayflow — HRMS
+# Genesis — HRMS
 
 > Every workday, perfectly aligned.
 
